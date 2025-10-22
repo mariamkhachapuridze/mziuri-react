@@ -17,7 +17,7 @@ const projectName = "clicker game"
 <CounterButton
         title={"Increase"}
         handleClick={() => {
-          setCounter(counter + 1);
+        setCounter(counter + 1);
         }}
       />
       <CounterButton
@@ -29,7 +29,7 @@ const projectName = "clicker game"
       <CounterButton
         title={"Reset"}
         handleClick={() => {
-          setCounter(counter * 0);
+          setCounter(0);
         }}
       />
       <Message count={counter} />
