@@ -10,6 +10,19 @@ function App() {
   const [player2, setPlayer2] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
+  const determineWinner = (player1T, player2T) => {
+    if (player1T > player2T) {
+      setWinner("Player 1 wins!");
+    } else if (player2T > player1T) {
+      setWinner("Player 2 wins!");
+    } else {
+      setWinner("It's a tie!");
+    }
+    setRound(0);
+    setPlayer1Total(0);
+    setPlayer2Total(0);
+  };
+
   const rollDice = () => {
     const playerRandomNumber = Math.floor(Math.random() * 6);
     setWinner("");
@@ -26,18 +39,7 @@ function App() {
       setCurrentPlayer(1);
       setRound(round + 1);
       if (round === 1) {
-        if (player1Total > newTotal) {
-          setWinner("Player 1 wins!");
-        } else if (newTotal > player1Total) {
-          setWinner("Player 2 wins!");
-        } else {
-          setWinner("It's a tie!");
-        }
-        setRound(0);
-        setPlayer1Total(0);
-        setPlayer2Total(0);
-        setPlayer1(0);
-        setPlayer2(0);
+        determineWinner(player1Total, newTotal);
       }
     }
   };
