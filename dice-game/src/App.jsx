@@ -7,7 +7,7 @@ function App() {
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
   const rollDice = () => {
-    const playerRandomNumber = Math.floor(Math.random() * 6) + 1;
+    const playerRandomNumber = Math.floor(Math.random() * 6);
 
     if(currentPlayer === 1){
       setPlayer1(playerRandomNumber);
