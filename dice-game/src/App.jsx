@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Dice from "./Dice.jsx";
+import WinnerBanner from "./WinnerBanner.jsx";
 function App() {
-  const [player1Total, setPlayer1Total] = useState(0);
-  const [player2Total, setPlayer2Total] = useState(0);
   const [round, setRound] = useState(0);
   const [winner, setWinner] = useState("");
 
@@ -10,38 +9,37 @@ function App() {
   const [player2, setPlayer2] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState(1);
 
-  const determineWinner = (player1T, player2T) => {
-    if (player1T > player2T) {
+  const determineWinner = (roll1, roll2) => {
+    if (roll1 > roll2) {
       setWinner("Player 1 wins!");
-    } else if (player2T > player1T) {
+    } else if (roll2 > roll1) {
       setWinner("Player 2 wins!");
     } else {
       setWinner("It's a tie!");
     }
     setRound(0);
-    setPlayer1Total(0);
-    setPlayer2Total(0);
   };
 
   const rollDice = () => {
     const playerRandomNumber = Math.floor(Math.random() * 6);
-    setWinner("");
 
     if (currentPlayer === 1) {
       setPlayer1(playerRandomNumber);
-      setPlayer1Total(player1Total + playerRandomNumber + 1);
       setCurrentPlayer(2);
     } else {
-      let newTotal = player2Total + playerRandomNumber + 1;
-
       setPlayer2(playerRandomNumber);
-      setPlayer2Total(newTotal);
       setCurrentPlayer(1);
       setRound(round + 1);
-      if (round === 1) {
-        determineWinner(player1Total, newTotal);
-      }
+      determineWinner(player1, playerRandomNumber);
     }
+  };
+
+  const playAgain = () => {
+    setPlayer1(0);
+    setPlayer2(0);
+    setWinner("");
+    setRound(0);
+    setCurrentPlayer(1);
   };
 
   return (
@@ -65,7 +63,7 @@ function App() {
           title={"Player 1"}
           index={player1}
           handleClick={rollDice}
-          isDisabled={currentPlayer === 2}
+          isDisabled={currentPlayer === 2 || winner !== ""}
         />
 
         <div>VS</div>
@@ -74,11 +72,11 @@ function App() {
           title={"Player 2"}
           index={player2}
           handleClick={rollDice}
-          isDisabled={currentPlayer === 1}
+          isDisabled={currentPlayer === 1 || winner !== ""}
         />
       </div>
 
-      <h1>{winner}</h1>
+      <WinnerBanner winner={winner} handleClick={playAgain} />
     </div>
   );
 }
