@@ -5,13 +5,13 @@ export default function Dice({ title, index, handleClick, isDisabled }) {
     ? { ...baseStyle, ...disabledStyle }
     : { ...baseStyle };
 
-  const diceEmoji = index === null ? diceEmojis[0] : diceEmojis[index];
+  const diceEmoji = index === null ? diceEmojis[0] : diceEmojis[index - 1];
 
   return (
     <>
       <div>
         <h3>{title}</h3>
-        <div style={{ fontSize: "60px" }}>{diceEmojis[index]}</div>
+        <div style={{ fontSize: "60px" }}>{diceEmoji}</div>
         <button onClick={handleClick} style={buttonStyle} disabled={isDisabled}>
           Roll Dice
         </button>
