@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dice from "./Dice.jsx";
 import WinnerBanner from "./WinnerBanner.jsx";
 function App() {
-  const [round, setRound] = useState(0);
+  const [round, setRound] = useState(1);
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
 
@@ -41,7 +41,7 @@ function App() {
   const playAgain = () => {
     setPlayer1(null);
     setPlayer2(null);
-    setRound(0);
+    setRound(round + 1);
   };
 
   return (
@@ -74,9 +74,11 @@ function App() {
           title={"Player 2"}
           index={player2}
           handleClick={rollDice}
-          isDisabled={current() === 1}
+          isDisabled={current() === 1 || player2 !== null}
         />
       </div>
+
+      <h1>Round: {round}</h1>
 
       {winner() && <WinnerBanner winner={winner()} handleClick={playAgain} />}
     </div>
