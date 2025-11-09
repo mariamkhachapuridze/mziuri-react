@@ -12,9 +12,9 @@ function App() {
     }
 
     if (player1 > player2) {
-      return "Player 1 wins!";
+      return "Player 1";
     } else if (player2 > player1) {
-      return "Player 2 wins!";
+      return "Player 2";
     } else {
       return "It's a tie!";
     }
@@ -78,9 +78,9 @@ function App() {
         />
       </div>
 
-      <h1>Round: {round}</h1>
-
-      {winner() && <WinnerBanner winner={winner()} handleClick={playAgain} />}
+      {winner() && (
+        <WinnerBanner winner={winner()} handleClick={playAgain} round={round} />
+      )}
     </div>
   );
 }

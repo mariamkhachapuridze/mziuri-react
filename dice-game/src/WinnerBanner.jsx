@@ -1,10 +1,12 @@
-export default function WinnerBanner({ winner, handleClick }) {
+export default function WinnerBanner({ winner, handleClick, round }) {
   if (winner === "") {
     return null;
   }
   return (
     <>
-      <h1>{winner}</h1>
+      <h1>
+        Round {round} winner: {winner}
+      </h1>
       <button onClick={handleClick} style={baseStyle}>
         Play Again
       </button>
