@@ -1,10 +1,19 @@
 import { useState } from "react";
 import Dice from "./Dice.jsx";
 import WinnerBanner from "./WinnerBanner.jsx";
+import GameOverScreen from "./GameOverScreen.jsx";
+import Game from "./Game.jsx";
+
 function App() {
   const [round, setRound] = useState(1);
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
+  const [player1Wins, setPlayer1Wins] = useState(0);
+  const [player2Wins, setPlayer2Wins] = useState(0);
+
+  const gameOverCount = 3;
+
+  const isGameOver = round > gameOverCount;
 
   const winner = () => {
     if (player2 === null) {
@@ -35,53 +44,51 @@ function App() {
       setPlayer1(playerRandomNumber);
     } else {
       setPlayer2(playerRandomNumber);
+      if (player1 > playerRandomNumber) {
+        setPlayer1Wins(player1Wins + 1);
+      } else if (playerRandomNumber > player1) {
+        setPlayer2Wins(player2Wins + 1);
+      }
     }
   };
 
-  const playAgain = () => {
+  const playNextRound = () => {
     setPlayer1(null);
     setPlayer2(null);
     setRound(round + 1);
   };
 
+  const finalWinner = () => {
+    if (player1Wins > player2Wins) {
+      return "Player 1 Wins!";
+    } else if (player2Wins > player1Wins) {
+      return "Player 2 Wins!";
+    }
+    return "It's a tie!";
+  };
+
+  const playAgain = () => {
+    setRound(1);
+    setPlayer1(null);
+    setPlayer2(null);
+    setPlayer1Wins(0);
+    setPlayer2Wins(0);
+  };
+
+  if (isGameOver) {
+    return <GameOverScreen finalWinner={finalWinner()} playAgain={playAgain} />;
+  }
+
   return (
-    <div
-      style={{
-        textAlign: "center",
-        padding: "20px",
-        margin: 0,
-      }}
-    >
-      <h1>2-Player Dice Game</h1>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Dice
-          title={"Player 1"}
-          index={player1}
-          handleClick={rollDice}
-          isDisabled={current() === 2}
-        />
-
-        <div>VS</div>
-
-        <Dice
-          title={"Player 2"}
-          index={player2}
-          handleClick={rollDice}
-          isDisabled={current() === 1 || player2 !== null}
-        />
-      </div>
-
-      {winner() && (
-        <WinnerBanner winner={winner()} handleClick={playAgain} round={round} />
-      )}
-    </div>
+    <Game
+      current={current()}
+      playNextRound={playNextRound}
+      player1={player1}
+      player2={player2}
+      rollDice={rollDice}
+      round={round}
+      winner={winner()}
+    />
   );
 }
 
