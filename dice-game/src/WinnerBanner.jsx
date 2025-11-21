@@ -1,6 +1,7 @@
 export default function WinnerBanner({ winner, handleClick, round }) {
-  if (winner === "") {
-    return null;
+  let buttonText = "Play Next Round";
+  if (round === 3) {
+    buttonText = "See Final Results";
   }
   return (
     <>
@@ -8,7 +9,7 @@ export default function WinnerBanner({ winner, handleClick, round }) {
         Round {round} winner: {winner}
       </h1>
       <button onClick={handleClick} style={baseStyle}>
-        Play Again
+        {buttonText}
       </button>
     </>
   );

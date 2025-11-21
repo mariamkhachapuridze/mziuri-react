@@ -1,4 +1,17 @@
-export default function GameOverScreen({ finalWinner, playAgain }) {
+export default function GameOverScreen({
+  playAgain,
+  player1Wins,
+  player2Wins,
+}) {
+  const finalWinner = () => {
+    if (player1Wins > player2Wins) {
+      return "Player 1 Wins!";
+    } else if (player2Wins > player1Wins) {
+      return "Player 2 Wins!";
+    }
+    return "It's a tie!";
+  };
+
   return (
     <div
       style={{
@@ -32,7 +45,7 @@ export default function GameOverScreen({ finalWinner, playAgain }) {
             textShadow: "0 2px 10px rgba(76,175,80,0.08)",
           }}
         >
-          {finalWinner}
+          {finalWinner()}
         </h1>
         <button
           onClick={playAgain}

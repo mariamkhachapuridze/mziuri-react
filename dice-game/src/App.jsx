@@ -58,15 +58,6 @@ function App() {
     setRound(round + 1);
   };
 
-  const finalWinner = () => {
-    if (player1Wins > player2Wins) {
-      return "Player 1 Wins!";
-    } else if (player2Wins > player1Wins) {
-      return "Player 2 Wins!";
-    }
-    return "It's a tie!";
-  };
-
   const playAgain = () => {
     setRound(1);
     setPlayer1(null);
@@ -76,7 +67,13 @@ function App() {
   };
 
   if (isGameOver) {
-    return <GameOverScreen finalWinner={finalWinner()} playAgain={playAgain} />;
+    return (
+      <GameOverScreen
+        playAgain={playAgain}
+        player1Wins={player1Wins}
+        player2Wins={player2Wins}
+      />
+    );
   }
 
   return (
