@@ -1,3 +1,4 @@
+import React from "react";
 export default function GameOver({ rematch, winner }) {
   return (
     <div id="game-over">

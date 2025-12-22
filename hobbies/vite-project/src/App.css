@@ -1,0 +1,162 @@
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.app h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 5px;
+}
+
+.hobby-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.hobby-input {
+  flex: 1;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
+.hobby-input:focus {
+  outline: none;
+  border-color: #2c5aa0;
+}
+
+.save-button {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #2c5aa0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #1e3f73;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+}
+
+.hobby-list,
+.favorite-hobbies {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  width: 100%;
+  min-height: 300px;
+}
+
+.favorite-hobbies {
+  margin-top: 2rem;
+  border-color: #ffd700;
+  background-color: #fffef0;
+}
+
+.hobby-list h2,
+.favorite-hobbies h2 {
+  margin-top: 0;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.favorite-hobbies h2 {
+  color: #b8860b;
+}
+
+.hobby-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.hobby-item:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hobby-item.favorite {
+  background-color: #fffef0;
+  border-color: #ffd700;
+}
+
+.hobby-name {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.favorite-button {
+  background: transparent;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #999;
+}
+
+.favorite-button:hover {
+  border-color: #ffd700;
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.favorite-button.favorited {
+  color: #ffd700;
+  border-color: #ffd700;
+  background-color: #fffef0;
+}
+
+.favorite-star {
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+  font-style: italic;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 1rem;
+}

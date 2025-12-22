@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import Player from "./components/Player";
 import GameBoard from "./components/GameBoard";
@@ -27,16 +28,21 @@ const deriveActivePlayer = (gameTurns) => {
 };
 
 function App() {
+  const [players, setPlayers] = useState({ X: "Player 1", O: "Player 2" });
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
+
+  function handleSetPlayers(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return { ...prevPlayers, [symbol]: newName };
+    });
+  }
 
   const gameBoard = [
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ];
-
-  console.log(gameBoard);
 
   for (const turn of gameTurns) {
     const { square, player } = turn;

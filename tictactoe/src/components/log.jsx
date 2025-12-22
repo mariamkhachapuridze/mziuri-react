@@ -1,3 +1,4 @@
+import React from "react";
 export default function Logs({ gameTurns }) {
   return (
     <ol id="log">

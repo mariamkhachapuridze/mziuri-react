@@ -1,3 +1,4 @@
+import React from "react";
 export default function GameBoard({ gameBoard, onSquareSelect }) {
   return (
     <ol id="game-board">
